@@ -2,9 +2,13 @@
 
 @section('content')
     <div class="flex flex-col items-start h-full justify-center mt-auto">
-        <p class="text-lg  text-gray-700 mb-4">
-            Question 5 or 6
-        </p>
+        <div class="flex items-center w-full justify-between mb-4">
+            <p class="text-lg  text-blue-700 ">
+                Question 5 or 6
+            </p>
+
+            <x-text.timer-text>15s</x-text.timer-text>
+        </div>
         <div class="font-medium  rounded text  container ">
             <x-text.question-text class="text-gray-700">
                 What is my name?
@@ -59,4 +63,34 @@
         selectedOption.classList.remove('hover:bg-gray-200');
 
     }
+
+    function startTimer(duration, display) {
+        let timer = duration;
+        let minutes, seconds;
+
+        countdown = setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            display.textContent = minutes + 'm ' + seconds + 's';
+
+            if (--timer < 0) {
+                clearInterval(countdown);
+                // Timer has reached zero, perform actions here
+                // You can display a message, submit the form, etc.
+                // For example:
+                alert('Time is up!');
+            }
+        }, 1000);
+    }
+
+    window.onload = function () {
+        const timerDisplay = document.getElementById('timer');
+        const durationInSeconds = 15; // Set the duration in seconds
+
+        startTimer(durationInSeconds, timerDisplay);
+    };
 </script>
