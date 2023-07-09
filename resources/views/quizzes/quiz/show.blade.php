@@ -22,6 +22,9 @@
                 <x-text.option-text optionname="option1">David</x-text.option-text>
                 <x-text.option-text optionname="option2">Sarah</x-text.option-text>
             </form>
+
+
+
         </div>
 
         <div class="container flex items-center justify-end">
@@ -30,8 +33,30 @@
             </button>
 
             <button class=" ml-3   text-blue-900  px-4 py-3 flex justify-center">
-                Next<x-icons.forward-icon class=" font-bold " /> 
+                Next
+                <x-icons.forward-icon class=" font-bold " />
             </button>
         </div>
     </div>
 @endsection
+
+
+<script>
+    let selectedOption = null;
+
+    function selectOption(element) {
+        if (selectedOption !== null) {
+            selectedOption.classList.remove('bg-blue-600');
+            selectedOption.classList.replace('text-white', 'text-gray-700');
+            selectedOption.classList.add('hover:bg-gray-200');
+
+
+        }
+
+        selectedOption = element;
+        selectedOption.classList.add('bg-blue-600');
+        selectedOption.classList.replace('text-gray-700', 'text-white');
+        selectedOption.classList.remove('hover:bg-gray-200');
+
+    }
+</script>
